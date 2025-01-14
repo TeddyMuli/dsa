@@ -36,25 +36,21 @@ def delete_node(head, key):
     current = head
     previous = None
 
-    # If head node itself holds the key to be deleted
     if current is not None:
         if current.data == key:
             head = current.next
             current = None
             return head
 
-    # Search for the key to be deleted, keep track of the previous node
     while current is not None:
         if current.data == key:
             break
         previous = current
         current = current.next
 
-    # If key was not present in linked list
     if current == None:
         return head
 
-    # Unlink the node from linked list
     previous.next = current.next
     current = None
 
