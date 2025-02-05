@@ -3,67 +3,50 @@
 """
 
 
-class Node():
-    def __init__(self, new_data):
-        self.data = new_data
+class Node:
+    def __init__(self, data):
+        self.data = data
         self.next = None
 
-def insert_beginning(head, data):
-    new_node = Node(data)
-    new_node.next = head
-    return new_node
+class LinkedList:
+    def __init__(self):
+        self.head = None
 
-def traverse(head):
-    current = head
-    while current:
-        print(str(current.data) + "->", end=" ")
-        current = current.next
+    def traverse(self):
+        current = self.head
+        while current:
+            print(str(current.data) + "->", end=" ")
+            current = current.next
 
-    print("None")
+        print("None")
 
-def reverse(head):
-    current = head
-    previous = None
-    while current:
-        next_node = current.next
-        current.next = previous
-        previous = current
-        current = next_node
+    def insert_at_beginning(self, data):
+        new_node = Node(data)
+        current = self.head
+        self.head = new_node
+        new_node.next = current
 
-    return previous
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        current = self.head
+        while current:
+            if current.next == None:
+                current.next = new_node
+                break
 
-def delete_node(head, key):
-    current = head
-    previous = None
+            current = current.next
 
-    if current is not None:
-        if current.data == key:
-            head = current.next
-            current = None
-            return head
 
-    while current is not None:
-        if current.data == key:
-            break
-        previous = current
-        current = current.next
+if __name__ == '__main__':
+    l_list = LinkedList()
+    l_list.head = Node(1)
+    second = Node(2)
+    third = Node(3)
 
-    if current == None:
-        return head
-
-    previous.next = current.next
-    current = None
-
-    return head
-
-head = None
-head = insert_beginning(head, "d")
-head = insert_beginning(head, "c")
-head = insert_beginning(head, "b")
-head = insert_beginning(head, "a")
-
-traverse(head)
-head = reverse(head)
-traverse(head)
-head = delete_node(head, "c")
-traverse(head)
+    l_list.head.next = second
+    second.next = third
+    l_list.traverse()
+    l_list.insert_at_beginning(5)
+    l_list.traverse()
+    l_list.insert_at_end(8)
+    l_list.traverse()
