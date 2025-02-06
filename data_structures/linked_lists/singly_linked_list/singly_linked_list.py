@@ -21,14 +21,15 @@ class LinkedList:
         print("None")
 
     def insert_at_beginning(self, data):
-        new_node = Node(data)
         current = self.head
-        self.head = new_node
+        new_node = Node(data)
         new_node.next = current
+        self.head = new_node
 
     def insert_at_end(self, data):
-        new_node = Node(data)
         current = self.head
+        new_node = Node(data)
+
         while current:
             if current.next == None:
                 current.next = new_node
@@ -36,6 +37,56 @@ class LinkedList:
 
             current = current.next
 
+    def delete_node(self, key):
+        current = self.head
+
+        if current.data == key:
+            self.head = current.next
+            return
+
+        while current.next:
+            if current.next.data == key:
+                current.next = current.next.next
+                break
+
+            current = current.next
+
+        if current == None:
+            return
+        
+    def insert_at_position(self, data, position):
+        current = self.head
+        new_node = Node(data)
+        count = 1
+
+        if position == 0:
+            self.insert_at_beginning(data)
+            return
+
+        while current.next:
+            if count == position:
+                new_node.next = current.next
+                current.next = new_node
+                break
+            
+            count += 1
+            current = current.next
+
+        if current.next == None:
+            self.insert_at_end(data)
+
+    def update(self, key, data):
+        current = self.head
+
+        while current:
+            if current.data == key:
+                current.data = data
+                break
+
+            current = current.next
+
+        if current == None:
+            return
 
 if __name__ == '__main__':
     l_list = LinkedList()
@@ -49,4 +100,10 @@ if __name__ == '__main__':
     l_list.insert_at_beginning(5)
     l_list.traverse()
     l_list.insert_at_end(8)
+    l_list.traverse()
+    l_list.delete_node(3)
+    l_list.traverse()
+    l_list.insert_at_position(3, -2)
+    l_list.traverse()
+    l_list.update(3, -2)
     l_list.traverse()
