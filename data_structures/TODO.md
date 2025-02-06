@@ -6,8 +6,8 @@
 - [ ] Practice array problems
 
 ## Linked Lists
-- [✔] Understand singly linked list
-- [✔] Implement doubly linked list
+- [x] Understand singly linked list
+- [x] Implement doubly linked list
 - [ ] Solve linked list problems
 
 ## Stacks
