@@ -28,4 +28,6 @@ class DoublyLinkedList:
         pass
 
 if __name__ == "__main__":
-    pass
+    dl_list = DoublyLinkedList()
+    dl_list.head = Node(1)
+    
