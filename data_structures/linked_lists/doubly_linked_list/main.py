@@ -13,7 +13,13 @@ class DoublyLinkedList:
         self.head = None
 
     def traverse(self):
-        pass
+        current = self.head
+
+        while current:
+            print(str(current.data) + '->', end=" ")
+            current = current.next
+
+        print('None')
 
     def insert_at_beginning(self):
         pass
@@ -30,4 +36,11 @@ class DoublyLinkedList:
 if __name__ == "__main__":
     dl_list = DoublyLinkedList()
     dl_list.head = Node(1)
-    
+    second = Node(2)
+    third = Node(3)
+    dl_list.head.next = second
+    second.prev = dl_list.head
+    second.next = third
+    third.prev = second
+
+    dl_list.traverse()
