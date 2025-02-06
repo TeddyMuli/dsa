@@ -26,3 +26,6 @@ class DoublyLinkedList:
 
     def delete_node(self):
         pass
+
+if __name__ == "__main__":
+    pass
