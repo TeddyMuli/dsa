@@ -47,8 +47,26 @@ class DoublyLinkedList:
         new_node.prev = current
         self.tail = new_node
 
-    def insert_at_position(self):
-        pass
+    def insert_at_position(self, position, data):
+        current = self.head
+        new_node = Node(data)
+        count = 1
+
+        if position == 0:
+            self.insert_at_beginning(data)
+            return
+        
+        while  current.next:
+            if count == position:
+                new_node.next = current.next
+                new_node.prev = current
+                current.next = new_node
+                break
+
+            current = current.next
+
+        if current == None:
+            return
 
     def delete_node(self, key):
         head = self.head
@@ -100,4 +118,11 @@ if __name__ == "__main__":
     dl_list.forward_traverse()
 
     dl_list.delete_node(2)
+    dl_list.forward_traverse()
+    dl_list.backward_traverse()
+
+    dl_list.insert_at_position(1, 12)
+    dl_list.forward_traverse()
+
+    dl_list.insert_at_position(0, 5)
     dl_list.forward_traverse()
