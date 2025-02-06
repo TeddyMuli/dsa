@@ -87,6 +87,18 @@ class LinkedList:
 
         if current == None:
             return
+        
+    def reverse(self):
+        current = self.head
+        previous = None
+
+        while current:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+
+        self.head = previous
 
 if __name__ == '__main__':
     l_list = LinkedList()
@@ -106,4 +118,6 @@ if __name__ == '__main__':
     l_list.insert_at_position(3, -2)
     l_list.traverse()
     l_list.update(3, -2)
+    l_list.traverse()
+    l_list.reverse()
     l_list.traverse()
