@@ -57,10 +57,21 @@ class DoublyLinkedList:
         if key == head.data:
             head.next.prev = None
             self.head = head.next
+            return
 
         if key == tail.data:
             tail.prev.next = None
             self.tail = tail.prev
+            return
+
+        while head:
+            if head.next.data == key:
+               head.next = head.next.next
+               head.next.prev = head
+               break
+
+            head = head.next
+
 
 if __name__ == "__main__":
     dl_list = DoublyLinkedList()
@@ -81,3 +92,12 @@ if __name__ == "__main__":
 
     dl_list.insert_at_end(8)
     dl_list.backward_traverse()
+
+    dl_list.delete_node(8)
+    dl_list.forward_traverse()
+
+    dl_list.delete_node(4)
+    dl_list.forward_traverse()
+
+    dl_list.delete_node(2)
+    dl_list.forward_traverse()
