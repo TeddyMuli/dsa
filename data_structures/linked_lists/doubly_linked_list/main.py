@@ -12,14 +12,13 @@ class DoublyLinkedList:
     def __init__(self):
         self.head = None
 
-    def traverse(self):
+    def forward_traverse(self):
         current = self.head
 
         while current:
             print(str(current.data) + '->', end=" ")
             current = current.next
-
-        print('None')
+            
 
     def insert_at_beginning(self):
         pass
@@ -43,4 +42,4 @@ if __name__ == "__main__":
     second.next = third
     third.prev = second
 
-    dl_list.traverse()
+    dl_list.forward_traverse()
