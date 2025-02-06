@@ -11,14 +11,27 @@ class Node:
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def forward_traverse(self):
         current = self.head
+        print('Forward Traversal:', end=' ')
 
         while current:
             print(str(current.data) + '->', end=" ")
             current = current.next
-            
+
+        print('None')
+
+    def backward_traverse(self):
+        current = self.tail
+        print('Backward Traversal:', end=' ')
+        
+        while current:
+            print(str(current.data) + '->', end=' ')
+            current = current.prev
+
+        print('None')
 
     def insert_at_beginning(self):
         pass
@@ -41,5 +54,7 @@ if __name__ == "__main__":
     second.prev = dl_list.head
     second.next = third
     third.prev = second
+    dl_list.tail = third
 
     dl_list.forward_traverse()
+    dl_list.backward_traverse()
