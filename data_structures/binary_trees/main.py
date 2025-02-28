@@ -1,54 +1,81 @@
-#!/usr/bin/env python3
-''' Python module for a binary tree
+#!/usr/bin/python3
+''' Python module to learn binary trees
 '''
-
 
 class Node:
     def __init__(self, data):
         self.data = data
-        self.left = None
         self.right = None
+        self.left = None
 
 class BinaryTree:
     def __init__(self):
         self.root = None
 
-    def insert(self, data):
+    def insert_node(self, data):
         if self.root is None:
             self.root = Node(data)
             return
-        
-        def _insert_recursive(node, data):
+                       
+        def _insert_node_recursive(node, data):
             if data < node.data:
                 if node.left is None:
                     node.left = Node(data)
                 else:
-                    _insert_recursive(node.left, data)
+                   _insert_node_recursive(node.left, data)
             else:
                 if node.right is None:
                     node.right = Node(data)
                 else:
-                    _insert_recursive(node.right, data)
-        
-        _insert_recursive(self.root, data)
+                    _insert_node_recursive(node.right, data)
 
-    def traverse(self):
-        def _traverse_recursive(node, level=0, prefix='Root: '):
-            if node is not None:
+        _insert_node_recursive(self.root, data)
+
+    def pre_order_traversal(self):
+        def _pre_order_traversal_recursive(node, level=0, prefix='Root: '):
+            if node:
                 print(' ' * level + prefix + str(node.data))
                 if node.left or node.right:
                     if node.left:
-                        _traverse_recursive(node.left, level + 1, 'L---')
+                        _pre_order_traversal_recursive(node.left, level+1, prefix='L---')
                     if node.right:
-                        _traverse_recursive(node.right, level + 1, 'R---')
-        
-        _traverse_recursive(self.root)
+                        _pre_order_traversal_recursive(node.right, level+1, prefix='R---')
+
+        _pre_order_traversal_recursive(self.root)
+
+    def remove_node(self, key):
+        parent = None
+        def _find_node_recursive(node, parent=self.root):
+            if node:
+                if node.data == key:
+                    parent = parent
+                    return node
+                elif node.left or node.right:
+                    if node.left:
+                        _find_node_recursive(node.left, node)
+                    if node.right:
+                        _find_node_recursive(node.right, node)
+            else:
+                return None
+            
+        node = _find_node_recursive(self.root)
+        if node:
+            left = node.left
+            right = node.right
+            parent.right = right
+            parent.left = left
+
+    def reverse(self):
+        pass
+
 
 if __name__ == '__main__':
-    tree = BinaryTree()
-    values = [5, 5, 6, 2, 9, 1, 3]
-
-    for value in values:
-        tree.insert(value)
-
-    tree.traverse()
+    b_tree = BinaryTree()
+    #b_tree.root = Node(0)
+    b_tree.insert_node(3)
+    b_tree.insert_node(2)
+    b_tree.insert_node(1)
+    b_tree.insert_node(4)
+    b_tree.pre_order_traversal()
+    b_tree.remove_node(2)
+    b_tree.pre_order_traversal()
