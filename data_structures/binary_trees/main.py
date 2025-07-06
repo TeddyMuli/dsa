@@ -57,7 +57,7 @@ class BinaryTree:
                         _find_node_recursive(node.right, node)
             else:
                 return None
-            
+
         node = _find_node_recursive(self.root)
         if node:
             left = node.left
