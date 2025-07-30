@@ -25,11 +25,11 @@ def traverse(root):
     traverse(root.right)
 
 if __name__ == "__main__":
-    root = Node(0)
-    insert(root, 1)
-    insert(root, 2)
-    insert(root, 3)
-    insert(root, 4)
+    root = None
+    root = insert(root, 1)
+    root = insert(root, 2)
+    root = insert(root, 3)
+    root = insert(root, 4)
     print("Binary Tree: ", end='')
     traverse(root)
     print()
