@@ -18,21 +18,18 @@ def delete(root, key):
         return
     
     queue = [root]
-    key_node = None
-    last_node = None
-    parent_last_node = None
+    last_node = key_node = parent_last_node = None
 
     while queue:
-        node = queue.pop(0)
-        last_node = node
-        if node.data == key:
-            key_node = node
-        if node.left:
-            parent_last_node = node
-            queue.append(node.left)
-        if node.right:
-            parent_last_node = node
-            queue.append(node.right)
+        last_node = queue.pop(0)
+        if last_node.data == key:
+            key_node = last_node
+        if last_node.left:
+            parent_last_node = last_node
+            queue.append(last_node.left)
+        if last_node.right:
+            parent_last_node = last_node
+            queue.append(last_node.right)
 
     if key_node:
         key_node.data = last_node.data
@@ -40,8 +37,6 @@ def delete(root, key):
             parent_last_node.right = None
         else:
             parent_last_node.left = None
-    else:
-        print("\nKey not found!")
 
 if __name__ == "__main__":
     root = Node(1)
