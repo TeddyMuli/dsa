@@ -14,19 +14,18 @@ class BinaryTree:
 
     def insert(self, root, value):
         if root is None:
-            self.data = value
             return
-
+        
         queue = [root]
         while queue:
             node = queue.pop(0)
-            if node.left is None:
+            if not node.left:
                 node.left = BinaryTree(value)
                 break
             else:
                 queue.append(node.left)
 
-            if node.right is None:
+            if not node.right:
                 node.right = BinaryTree(value)
                 break
             else:
